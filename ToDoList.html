@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="FormApp">
+<head>
+    <title>ToDo List (Task2)</title>
+    <script src="Libraries/angular.js"></script>
+    <link href="Libraries/bootstrap.css" rel="stylesheet" />
+    <link href="Libraries/bootstrap-theme.css" rel="stylesheet" />
+    <script src="ToDoList.js"></script>
+
+</head>
+<body ng-controller="FormCtrl">
+    <div class="container">
+        <h3>ToDo List</h3>
+        <!-- Таблица с задачами -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Completed</th>
+                    <th>Details</th>
+                    <th style="width:30px;"><button class="btn btn-default" ng-click="removeElm()">Delete selected</button></th>
+                </tr>
+            </thead>
+            <tr name="table" ng-repeat="elm in data">
+                <td>{{elm.name}}</td>
+                <td>{{elm.duedate}}</td>
+                <td><label><input type="checkbox" ng-click="save()" ng-model="elm.completed" ng-true-value="'Yes'" ng-false-value="'No'" /> {{elm.completed}}</label></td>
+                <td class="w-25">
+                    <div ng-switch on="elm.show">
+                        <div ng-switch-when=true style="width:300px; word-wrap: break-word;">
+                            <button class="btn btn-default" ng-click="elm.show=false">Details</button>
+                        </div>
+                        <div ng-switch-when=false style="width:300px;word-wrap: break-word;">
+                            {{elm.description}}<br />
+                            <button class="btn btn-default" ng-click="elm.show=true">Hide details</button>
+                        </div>
+                    </div>
+                </td>
+                <td><input class="ml-5" name="del" type="checkbox" ng-model="elm.sel" ng-change="save()" /></td>
+            </tr>
+        </table>
+        <div>
+            <!-- Форма для добавления новых задач -->
+            <form>
+                <div>
+                    Name<br /><input ng-model="elmName" class="form-control" />
+                </div>
+                <div>
+                    Due Date<br /><input type="date" ng-model="elmDuedate" class="form-control" />
+                </div>
+                <div>
+                    Description<br /><textarea ng-model="elmDescription" class="form-control"></textarea><br />
+                </div>
+                <div>
+                    <button class="btn btn-default" ng-click="addNewElm()">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
