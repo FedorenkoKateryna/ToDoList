@@ -53,19 +53,9 @@ m.controller("FormCtrl", function ($scope) {
     $scope.save = function () {
         todoModel.save();
     };
-    $scope.read = function () {
+  $scope.read = function () {
         todoModel.read();
     };
-//функция перезагрузки страницы
-  //  $scope.reload = function () {
-  //    $.ajax({
-  //      url: "ToDoList5.html",
-  //      cache: false,
-    //    success: function(html){
-    //    $("#cont").html(html);
-    //    }
-  //    });
-  //  };
 //правило для сортировки
      $scope.sortRul = function (sortValue) {
          switch (sortValue) {
@@ -78,71 +68,36 @@ m.controller("FormCtrl", function ($scope) {
              case "Completed":
                  return "completed";
              case "Select":
-                 return "sel";
+                 return "sel";               
          }
      };
 //вотчер для картинок сортировки в заголовке таблицы
      $scope.$watch('reverse', function (value) {
         if (value) {
-          $scope.arrowSrc = 'images/Sort-up.png';
+          $scope.arrowSrc = 'https://s20.postimg.cc/tl63patod/Sort-up.png';
         } else {
-          $scope.arrowSrc = 'images/Sort-down.png';
+          $scope.arrowSrc='https://s20.postimg.cc/jb3oq2bil/Sort-down.png';
         }
       });
-//функция дляудаления элемента
+//функция для удаления элемента
    $scope.removeElm = function () {
        var checkboxList = document.getElementsByName('del');
        var i = checkboxList.length;
        var a = JSON.parse(localStorage.getItem('tasks'));
        while (i--) {
            if (checkboxList[i].checked) {
-              //checkboxList[i].parentNode.parentNode = null;
-               checkboxList[i].parentNode.parentNode.remove();
+               checkboxList[i].parentNode.parentNode.remove();              
            }
-           if (a[i].sel) {
-               a.splice(i, 1);
-               window.localStorage["tasks"] = JSON.stringify(a);
-               //$('#cont').load();
-              // todoModel.read();
-              location.reload();
-           }
+         if (a[i].sel){
+           a.splice(i, 1); 
+           window.localStorage.tasks = JSON.stringify(a); 
+           //location.reload();
+           window.location.href = window.location.href;
+         }
        }
    };
    $scope.now = new Date().toISOString();
-//анимация заголовка
-/*  $( document ).ready( function(){
-    $.fn.animate_Text = function() {
-     var string = this.text();
-     return this.each(function(){
-      var $this = $(this);
-      $this.html(string.replace(/./g, '<span class="new">$&</span>'));
-      $this.find('span.new').each(function(i, el){
-       setTimeout(function(){ $(el).addClass('div_opacity'); }, 150 * i);
-      });
-     });
-    };
-    $.fn.animate_Text2 = function(){
-      setTimeout(function(){
-        $('#textAnim').animate({
-            fontSize: "60px",
-            marginTop: "0px",
-          }, 1500 );
-        },1500);
-    };
-    $("#cont").hide();
-    $('#textAnim').show();
-    $('#textAnim').animate_Text();
-    $('#textAnim').animate_Text2();
-    setTimeout(function(){document.getElementById('textAnim').removeAttribute('id')},6000);
-   });
-//функция для задержки загрузки контента, пока заголовок не загрузится
-$(window).load(function() {
-  setTimeout(function() {$("#cont").show();},3000);
-});
- // функция устанавливает id для заголовка призакрытии стр, чтобы при повторном открытии анимация заголовка сработала
- $(window).unload(function() {
-   $(".header").attr('id','textAnim');
- });*/
+
 //функция для отображения даты в DatePicker
    angular.element(document).ready(function () {
             var dateInArr = document.getElementsByName('dateIn');
@@ -156,7 +111,7 @@ $(window).load(function() {
 
  // DatePicker
  m.controller('datepickerCtrl',  ['$scope', function($scope) {
-   	var vm = this;
+    var vm = this;
  }]);
  // DatePicker -> NgModel директива
  m.directive('datePicker', function () {
@@ -179,14 +134,15 @@ $(window).load(function() {
                  ngModel.$viewValue = e.date;
                  ngModel.$commitViewValue();
                   if(a != e.date.toISOString() && $(element).parents(2).is('tr'));
-                  {setTimeout(function(){location.reload()}, 5000);}
-                //   var now = new Date().toISOString();
-              //   if(e.date.toISOString()<now)
-                //    {$(element).parents('tr').eq(0).css('background-color','rgba(255, 0, 0, 0.2)')}
-                  //  else {$(element).parents('tr').eq(0).css('background-color','rgba(255, 255, 255)')}
-                    todoModel.save();
-                 if(a == e.date.toISOString() && $(element).parents(2).is('tr') || a == new Date().toISOString() && $(element).parents(2).is('tr') || a === undefined && $(element).parents(2).is('tr')) {setTimeout(function(){location.reload()}, 5000);}
-                 //переделать строку эту, т.к. с перезагрузкой все работает странно
+                    {setTimeout(function(){ todoModel.save();window.location.href = window.location.href;}, 3000);}
+                   var now = new Date().toISOString();
+                 if(e.date.toISOString()<now)
+                    {$(element).parents('tr').eq(0).css('background-color','rgba(255, 140, 140, 0.1)');}
+                    else {$(element).parents('tr').eq(0).css('background-color','rgba(255, 255, 255)');}
+                      todoModel.save();
+                 if(a == e.date.toISOString() && $(element).parents(2).is('tr') || a == new Date().toISOString() && $(element).parents(2).is('tr') || a === undefined && $(element).parents(2).is('tr'))   {
+                   setTimeout(function(){ todoModel.save();window.location.href = window.location.href;}, 3000);}
+                 //подумать как переделать, т.к. с перезагрузкой все работает странно             
              });
          }
      };
