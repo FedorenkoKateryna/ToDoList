@@ -15,8 +15,8 @@
   <script src="Libraries/bootstrap.min.js"></script>  -->
 
   <!--подключаем файлы js и css-->
-    <script type="text/javascript" src="ToDoList5.js"></script>
-    <link rel="stylesheet" href="ToDoList5.css">
+    <script type="text/javascript" src="ToDoList.js"></script>
+    <link rel="stylesheet" href="ToDoList.css">
   <!--подключаем Google шрифты-->
     <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Neucha" rel="stylesheet">
@@ -38,68 +38,68 @@
 
 </head>
 <body ng-controller="FormCtrl">
-  <!--class = "header" id="textAnim"-->
-    <h1 >To Do List</h1><br>
-    <div id="cont">
-        <!-- Заголовок таблицы с задачами -->
-      <div>
-        <table  id="theads">
-            <thead>
-                <tr>
-                  <th class="colCompl" ng-click ="sortValue = 'Completed'; reverse=!reverse; ">Completed
-                    <img ng-if="sortValue != 'Completed'" ng-src="images/Sort_both.png"/>
-                    <img ng-if="sortValue === 'Completed'" ng-src="{{arrowSrc}}"/>
-                  </th>
-                    <th class="colName" ng-click ="sortValue = 'Name'; reverse=!reverse;">Name
-                      <img ng-if="sortValue != 'Name'" ng-src="images/Sort_both.png"/>
-                      <img ng-if="sortValue === 'Name'" ng-src="{{arrowSrc}}"/>
-                    </th>
-                    <th class="colDate" ng-click ="sortValue = 'Date'; reverse=!reverse;">Date
-                      <img ng-if="sortValue != 'Date'&& sortValue != undefined" ng-src="images/Sort_both.png"/>
-                      <img ng-if="sortValue === 'Date'||sortValue === undefined" ng-src="{{arrowSrc}}"/>
-                    </th>
-                    <th class="colDel" ng-click ="sortValue = 'Select'; reverse=!reverse;">Select
-                      <img ng-if="sortValue != 'Select'" ng-src="images/Sort_both.png"/>
-                      <img ng-if="sortValue === 'Select'" ng-src="{{arrowSrc}}"/>
-                    </th>
-                </tr>
-            </thead>
-          </table>
-        </div>
-        <!-- Таблица с задачами -->
-      <div class="tableToDo">
-        <table id = 'tb'class="table">
-            <tr class="tr" ng-style="elm.completed == 'Yes' ? {'background-color':'rgba(120, 255, 120, 0.15)'} : {} && elm.duedate < now ? {'background-color':'rgba(255, 140, 140, 0.1)'} : {}" ng-repeat="elm in data | orderBy : sortRul(sortValue):reverse">
-                <td class="colCompl"><label><input type="checkbox" ng-click="save()" ng-model="elm.completed" ng-true-value="'Yes'" ng-false-value="'No'" />{{elm.completed}}</label></td>
-                <td class="colName1"><textarea  ng-model="elm.name" ng-change="save()" placeholder="Task's name">{{elm.name}}</textarea></td>
-                <td class="colDet">
-                  <!-- показать/скрыть детали  ng-switch-->
-                  <div ng-switch on="elm.show">
-                      <div ng-switch-when=true>
-                          <button class="btn btn-outline-secondary pull-left ml-5" ng-click="elm.show=false">Show details</button>
-                      </div>
-                      <div ng-switch-when=false>
-                        <button class="btn btn-outline-secondary pull-left ml-5" ng-click="elm.show=true;save()">Hide details</button>
-                        <textarea ng-model="elm.description" ng-change="save()" onmouseover ="this.style.height=((this.value.length)/1.5) + 'px';" placeholder="Task's description">{{elm.description}}</textarea>
-                      </div>
-                  </div>
-                </td>
-                <td class="colDate"><p class = "dateIn" name="dateIn" hidden="true">{{elm.duedate | date : "yyyy-MMM-dd"}}</p>
-                  <div ng-controller="datepickerCtrl as vm" class="input-group date" ng-model="elm.duedate" date-picker>
-                    <input name="dateInCheck" type="text" class="form-control netto-input"  ng-model="duedate" date-picker-input>
-                    <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                  </div>
-                </td>
-                <td class="colDel"><input name="del" type="checkbox" ng-model="elm.sel" ng-change="save()" /></td>
-            </tr>
-        </table>
-
-      </div>
-      <!-- кнопки добавить и удаить задачи-->
-      <button class="btn btn-success pull-left m-5" ng-click="addNewElm()" title="Add new task">ADD</button>
-      <div><button class="btn btn-danger pull-right m-5" ng-click="removeElm()" title="Delete selected task">DELETE</button></div>
+  <h1>To Do List</h1>
+  <div id="cont">
+    <!-- Заголовок таблицы с задачами --> 
+    <div> 
+      <table id="theads">
+        <thead>
+          <tr>
+            <th class="colCompl" ng-click="sortValue = 'Completed'; reverse=!reverse">Completed
+              <img ng-if="sortValue != 'Completed'" alt='' src="https://s20.postimg.cc/y727xnun1/Sort_both.png" />
+              <img ng-if="sortValue === 'Completed'" alt='' src='' ng-src="{{arrowSrc}}" />
+            </th>
+            <th class="colName" ng-click="sortValue = 'Name'; reverse=!reverse">Name
+              <img ng-if="sortValue != 'Name'" alt='' src="https://s20.postimg.cc/y727xnun1/Sort_both.png" />
+              <img ng-if="sortValue === 'Name'" alt='' src='' ng-src="{{arrowSrc}}" />
+            </th>
+            <th class="colDate" ng-click="sortValue = 'Date'; reverse=!reverse">Date
+              <img ng-if="sortValue != 'Date'&& sortValue != undefined" alt='' src="https://s20.postimg.cc/y727xnun1/Sort_both.png" />
+              <img ng-if="sortValue === 'Date'||sortValue === undefined" alt='' src='' ng-src="{{arrowSrc}}" />
+            </th>
+            <th class="colDel" ng-click="sortValue = 'Select'; reverse=!reverse">Select
+              <img ng-if="sortValue != 'Select'" alt='' src="https://s20.postimg.cc/y727xnun1/Sort_both.png" />
+              <img ng-if="sortValue === 'Select'" alt='' src='' ng-src="{{arrowSrc}}" />
+            </th>
+          </tr>
+        </thead>
+      </table>
     </div>
+    <!-- Таблица с задачами -->
+    <div class="tableToDo">
+      <table class="table">
+        <tr class="tr" name="table" ng-style="elm.completed == 'Yes' ? {'background-color':'rgba(120, 255, 120, 0.15)'} : {} && elm.duedate < now ? {'background-color':'rgba(255, 140, 140, 0.1)'} : {}" ng-repeat="elm in data | orderBy : sortRul(sortValue):reverse">
+          <td class="colCompl"><label><input type="checkbox" ng-click="save()" ng-model="elm.completed" ng-true-value="'Yes'" ng-false-value="'No'" />{{elm.completed}}</label></td>
+          <td class="colName1"><textarea cols='' rows='' ng-model="elm.name" ng-change="save()" placeholder="Task's name">{{elm.name}}</textarea></td>
+          <td class="colDet">
+            <!-- показать/скрыть детали  ng-switch-->
+            <div ng-switch="elm.show">
+              <div ng-switch-when=true>
+                <button class="btn btn-outline-secondary pull-left ml-5" ng-click="elm.show=false">Show details</button>
+              </div>
+              <div ng-switch-when=false>
+                <button class="btn btn-outline-secondary pull-left ml-5" ng-click="elm.show=true;save()">Hide details</button>
+                <textarea  cols='' rows='' ng-model="elm.description" ng-change="save()" onmouseover="this.style.height=((this.value.length)/1.5) + 'px';" placeholder="Task's description">{{elm.description}}</textarea>
+              </div>
+            </div>
+          </td>
+          <td class="colDate">
+            <p class="dateIn" name="dateIn" hidden="true">{{elm.duedate | date : "yyyy-MMM-dd"}}</p>
+            <div ng-controller="datepickerCtrl as vm" class="input-group date" ng-model="elm.duedate" date-picker>
+              <input name="dateInCheck" type="text" class="form-control netto-input" ng-model="duedate" date-picker-input>
+              <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+          </td>
+          <td class="colDel"><input name="del" type="checkbox" ng-model="elm.sel" ng-change="save()" /></td>
+        </tr>
+      </table>
+
+    </div>
+    <!-- кнопки добавить и удаить задачи-->
+    <button class="btn btn-success pull-left m-3" ng-click="addNewElm()" title="Add new task">ADD</button>
+    <div><button class="btn btn-danger pull-right m-3" ng-click="removeElm()" title="Delete selected task">DELETE</button></div>
+  </div>
 </body>
 </html>
