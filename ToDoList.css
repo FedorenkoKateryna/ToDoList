@@ -3,18 +3,8 @@ h1 {
   font-family: 'Caveat', cursive;
   text-align:center;
   font-size:60px;
-  margin-top: 10px;
-  /*display:none;
-  font-family: 'Neucha', cursive;*/
+  margin-top: 0px;
 }
-/*#textAnim .new{opacity: 0;}
-#textAnim .div_opacity{
-  -webkit-transition: opacity .1s ease-in-out;
-  -moz-transition: opacity .1s ease-in-out;
-  -ms-transition: opacity .1s ease-in-out;
-  -o-transition: opacity .1s ease-in-out;
-  transition: opacity .1s ease-in-out;
-  opacity: 1;}*/
 th,td{
   text-align: center;
 }
@@ -83,8 +73,6 @@ td>div>div{
 .colDel{
   width:10%;
 }
-
-
 input:hover{
   cursor: pointer;
 }
