@@ -11,6 +11,7 @@ th,td{
 div {
   margin:0px 10px 0px 10px;
 }
+
 #theads {
   width: 100%;
   max-width: 100%;
@@ -19,7 +20,7 @@ div {
 }
 .tableToDo{
   overflow: auto;
-  max-height: 400px;
+  height: 60vh;
 }
 th{
   padding: 15px;
@@ -55,17 +56,17 @@ td>div>div{
   font-size:12px;
 }
 .colCompl{
-  width:10%;
+  width:15%;
 }
 .colName {
-  width:55%;
+  width:50%;
 }
 .colName1 {
-  width:30%;
+  width:27%;
   text-align: left;
 }
 .colDet{
-  width:25%;
+  width:23%;
 }
 .colDate{
   width:25%;
