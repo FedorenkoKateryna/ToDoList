@@ -28,13 +28,9 @@
     1. навести CSS красоту
     2.  поменять чтобы или не загружалась стр постоянно или не менялся фильтр
     3. разобраться почему при выборе даты меняется стиль и перескакивает задача в сортировке
-    4. возможно можно после обновления страницы чтобы прокрутка оставалась на том же месте
     5. сделать так чтобы задачи добавлялись в начало
-    6. добавить комментирии по поводу всех разделов скриптов
-    7. удалить ненужные библиотеки
-    8. картинки отправить в отдельную папку и поменять ссылки на них
-    9. Анимация названия
-   10. Вместо подсветки сделать смайлики возле даты-->
+   10. Вместо подсветки сделать смайлики возле даты??
+   11. Мобильная версия-->
 
 </head>
 <body ng-controller="FormCtrl">
@@ -98,8 +94,10 @@
 
     </div>
     <!-- кнопки добавить и удаить задачи-->
-    <button class="btn btn-success pull-left m-3" ng-click="addNewElm()" title="Add new task">ADD</button>
-    <div><button class="btn btn-danger pull-right m-3" ng-click="removeElm()" title="Delete selected task">DELETE</button></div>
+    <div class="container">
+      <button class="btn btn-success pull-left m-3" ng-click="addNewElm()" title="Add new task">ADD</button>
+      <div><button class="btn btn-danger pull-right m-3" ng-click="removeElm()" title="Delete selected task">DELETE</button></div>
+    </div>
   </div>
 </body>
 </html>
