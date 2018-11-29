@@ -1,3 +1,3 @@
 # ToDoList
 
-This is small project on AngularJS.
+Project on AngularJS.
